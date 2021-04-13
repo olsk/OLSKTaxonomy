@@ -1,4 +1,6 @@
 <script>
+export let OLSKTaxonomyItems;
+
 import { OLSKLocalized } from 'OLSKInternational';
 import { OLSKFormatted } from 'OLSKString';
 
@@ -10,6 +12,8 @@ const mod = {
 
 	SetupEverything() {
 		new Choices(mod._Choices, {
+			items: OLSKTaxonomyItems,
+			
 			placeholder: true,
 			placeholderValue: OLSKLocalized('OLSKTaxonomyFieldText'),
 
