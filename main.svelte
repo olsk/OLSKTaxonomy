@@ -1,5 +1,6 @@
 <script>
 export let OLSKTaxonomyItems;
+export let OLSKTaxonomySuggestionItems = [];
 export let OLSKTaxonomyDispatchUpdate;
 
 import { OLSKLocalized } from 'OLSKInternational';
@@ -9,10 +10,32 @@ import Choices from 'choices.js';
 
 const mod = {
 
+	// VALUE
+
+	_ValueSuggestions: OLSKTaxonomySuggestionItems,
+
+	// CONTROL
+
+	ControlTagSuggestion (inputData) {
+		mod._ValueSuggestions = mod._ValueSuggestions.filter(function (e) {
+			return e !== inputData;
+		});
+
+		mod._ChoicesInstance.setValue([inputData]);
+
+		mod.ReactItems();
+	},
+
+	// REACT
+
+	ReactItems () {
+		OLSKTaxonomyDispatchUpdate(mod._ChoicesInstance.getValue(true));
+	},
+
 	// SETUP
 
 	SetupEverything() {
-		const item = new Choices(mod._Choices, {
+		mod._ChoicesInstance = new Choices(mod._ChoicesElement, {
 			items: OLSKTaxonomyItems,
 			
 			placeholder: true,
@@ -26,9 +49,13 @@ const mod = {
 			removeItemButton: true,
 		});
 
-		item.passedElement.element.addEventListener('change', function (event) {
-	    OLSKTaxonomyDispatchUpdate(item.getValue(true));
-	  }, false);
+		mod._ChoicesInstance.passedElement.element.addEventListener('change', mod.ReactItems, false);
+
+		mod._ChoicesInstance.passedElement.element.addEventListener('removeItem', function (event) {
+			mod._ValueSuggestions = OLSKTaxonomySuggestionItems.filter(function (e) {
+				return e === event.detail.value || mod._ValueSuggestions.includes(e);
+			})
+		}, false);
 	},
 
 	// LIFECYCLE
@@ -45,7 +72,13 @@ onMount(mod.LifecycleModuleDidLoad);
 
 <div class="OLSKTaxonomy">
 
-<input type="text" bind:this={ mod._Choices } />
+<input type="text" bind:this={ mod._ChoicesElement } />
+
+<section>
+{#each mod._ValueSuggestions as item }
+	<button class="OLSKTaxonomySuggestion" on:click={ () => mod.ControlTagSuggestion(item) }>{ item }</button>
+{/each}
+</section>
 	
 </div>
 

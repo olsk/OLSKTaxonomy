@@ -4,8 +4,10 @@ Object.entries({
 	OLSKTaxonomy: '.OLSKTaxonomy',
 	
 	OLSKTaxonomyItem: '.choices__item',
+	OLSKTaxonomyItemRemoveButton: '.choices__button',
 	OLSKTaxonomyField: '.choices__input--cloned',
 	OLSKTaxonomyHint: '.choices__item--choice',
+	OLSKTaxonomySuggestion: '.OLSKTaxonomySuggestion',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -34,6 +36,10 @@ describe('OLSKTaxonomy_Access', function () {
 
 	it('hides OLSKTaxonomyHint', function () {
 		browser.assert.elements(OLSKTaxonomyHint, 0);
+	});
+
+	it('hides OLSKTaxonomySuggestion', function () {
+		browser.assert.elements(OLSKTaxonomySuggestion, 0);
 	});
 
 	context('type', function () {
@@ -68,6 +74,50 @@ describe('OLSKTaxonomy_Access', function () {
 
 		it('hides OLSKTaxonomyItem', function () {
 			browser.assert.elements(OLSKTaxonomyItem, 0);
+		});
+	
+	});
+
+	context('OLSKTaxonomySuggestionItems', function () {
+
+		const OLSKTaxonomySuggestionItems = Array.from(Array(Math.max(2, uRandomInt(10)))).map(function () {
+			return Math.random().toString();
+		});
+
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				OLSKTaxonomySuggestionItems: JSON.stringify(OLSKTaxonomySuggestionItems),
+			});
+		});
+
+		it('shows OLSKTaxonomySuggestion', function () {
+			browser.assert.elements(OLSKTaxonomySuggestion, OLSKTaxonomySuggestionItems.length);
+		});
+
+		describe('OLSKTaxonomySuggestion', function test_OLSKTaxonomySuggestion() {
+
+			const index = uRandomInt(OLSKTaxonomySuggestionItems.length);
+
+			before(function () {
+				browser.pressButton(`${ OLSKTaxonomySuggestion }:nth-child(${ index + 1 })`);
+			});
+			
+			it('hides OLSKTaxonomySuggestion', function () {
+				browser.assert.elements(OLSKTaxonomySuggestion, OLSKTaxonomySuggestionItems.length - 1);
+			});
+
+			context('remove', function () {
+				
+				before(function () {
+					browser.pressButton(OLSKTaxonomyItemRemoveButton);
+				});
+
+				it.skip('shows OLSKTaxonomySuggestion', function () {
+					browser.assert.elements(OLSKTaxonomySuggestion, OLSKTaxonomySuggestionItems.length);
+				});
+			
+			});
+		
 		});
 	
 	});

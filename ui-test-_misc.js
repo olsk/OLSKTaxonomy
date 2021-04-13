@@ -6,14 +6,23 @@ describe('OLSKTaxonomy_Misc', function () {
 		return Math.random().toString();
 	});
 
+	const OLSKTaxonomySuggestionItems = Array.from(Array(Math.max(2, uRandomInt(10)))).map(function () {
+		return Math.random().toString();
+	});
+
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
 			OLSKTaxonomyItems: JSON.stringify(OLSKTaxonomyItems),
+			OLSKTaxonomySuggestionItems: JSON.stringify(OLSKTaxonomySuggestionItems),
 		});
 	});
 
 	it.skip('binds OLSKTaxonomyItems', function () {
 		browser.assert.text(OLSKTaxonomyItem, OLSKTaxonomyItems.join(' '));
+	});
+
+	it('binds OLSKTaxonomySuggestionItems', function () {
+		browser.assert.text(OLSKTaxonomySuggestion, OLSKTaxonomySuggestionItems.join(''));
 	});
 
 	context('create', function () {
@@ -45,8 +54,23 @@ describe('OLSKTaxonomy_Misc', function () {
 		});
 		
 		it.skip('sends OLSKTaxonomyDispatchUpdate', function () {
-			browser.assert.text('#TestOLSKTaxonomyDispatchUpdate', '1');
+			browser.assert.text('#TestOLSKTaxonomyDispatchUpdate', '2');
 			browser.assert.text('#TestOLSKTaxonomyDispatchUpdateData', OLSKTaxonomyItems.length);
+		});
+	
+	});
+
+	describe('OLSKTaxonomySuggestion', function test_OLSKTaxonomySuggestion() {
+
+		const index = uRandomInt(OLSKTaxonomySuggestionItems.length);
+
+		before(function () {
+			browser.pressButton(`${ OLSKTaxonomySuggestion }:nth-child(${ index + 1 })`);
+		});
+		
+		it('sends OLSKTaxonomyDispatchUpdate', function () {
+			// browser.assert.text('#TestOLSKTaxonomyDispatchUpdate', '3');
+			browser.assert.text('#TestOLSKTaxonomyDispatchUpdateData', OLSKTaxonomyItems.length + 1);
 		});
 	
 	});
