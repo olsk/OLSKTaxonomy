@@ -1,5 +1,6 @@
 <script>
 export let OLSKTaxonomyItems;
+export let OLSKTaxonomyDispatchUpdate;
 
 import { OLSKLocalized } from 'OLSKInternational';
 import { OLSKFormatted } from 'OLSKString';
@@ -11,7 +12,7 @@ const mod = {
 	// SETUP
 
 	SetupEverything() {
-		new Choices(mod._Choices, {
+		const item = new Choices(mod._Choices, {
 			items: OLSKTaxonomyItems,
 			
 			placeholder: true,
@@ -24,6 +25,10 @@ const mod = {
 			removeItems: true,
 			removeItemButton: true,
 		});
+
+		item.passedElement.element.addEventListener('change', function (event) {
+	    OLSKTaxonomyDispatchUpdate(item.getValue(true));
+	  }, false);
 	},
 
 	// LIFECYCLE
