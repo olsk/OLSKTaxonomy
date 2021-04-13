@@ -74,15 +74,21 @@ onMount(mod.LifecycleModuleDidLoad);
 
 <input type="text" bind:this={ mod._ChoicesElement } />
 
-<section>
+{#if mod._ValueSuggestions.length }
+<p>
 {#each mod._ValueSuggestions as item }
 	<button class="OLSKTaxonomySuggestion" on:click={ () => mod.ControlTagSuggestion(item) }>{ item }</button>
 {/each}
-</section>
+</p>
+{/if}
 	
 </div>
 
 <style>
+.OLSKTaxonomy :global(.choices) {
+	margin: 0;
+}
+
 .OLSKTaxonomy :global(.choices__inner, .choices__list--dropdown) {
 	background: var(--OLSKInputBackground) !important;
 	border-color: var(--OLSKCommonEdgeColor) !important;
