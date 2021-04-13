@@ -48,3 +48,38 @@ onMount(mod.LifecycleModuleDidLoad);
 <input type="text" bind:this={ mod._Choices } />
 	
 </div>
+
+<style>
+.OLSKTaxonomy :global(.choices__inner, .choices__list--dropdown) {
+	background: var(--OLSKInputBackground) !important;
+	border-color: var(--OLSKCommonEdgeColor) !important;
+	width: 90% !important;
+	min-height: unset !important;
+	padding: var(--OLSKCommonInputPadding) !important;
+}
+
+.OLSKTaxonomy :global(.choices__input) {
+	border: none;
+	padding: var(--OLSKCommonInputPadding);
+	margin: 0;
+}
+
+.OLSKTaxonomy :global(.choices__list--dropdown .choices__item) {
+	padding: 0 10px;
+}
+
+.OLSKTaxonomy :global(.choices__list--multiple .choices__item) {
+	background: none;
+	border-color: var(--OLSKCommonForeground);
+	color: var(--OLSKCommonForeground);
+}
+
+.OLSKTaxonomy :global(.choices__button) {
+	margin: 0 !important;
+	padding: 0;
+	background: unset;
+	background-repeat: no-repeat;
+	background-position: center;
+	border: none !important;
+}
+</style>
