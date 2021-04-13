@@ -1,5 +1,6 @@
 <script>
 import { OLSKLocalized } from 'OLSKInternational';
+import { OLSKFormatted } from 'OLSKString';
 
 import Choices from 'choices.js';
 
@@ -11,6 +12,13 @@ const mod = {
 		new Choices(mod._Choices, {
 			placeholder: true,
 			placeholderValue: OLSKLocalized('OLSKTaxonomyFieldText'),
+
+			addItemText (inputData) {
+				return OLSKFormatted(OLSKLocalized('OLSKTaxonomyHintTemplate'), inputData);
+			},
+
+			removeItems: true,
+			removeItemButton: true,
 		});
 	},
 
