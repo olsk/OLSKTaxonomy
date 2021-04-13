@@ -1,0 +1,7 @@
+{
+	"name": "OLSKTaxonomy",
+	"main": "main.svelte",
+  "dependencies": {
+    "choices.js": "latest"
+  }
+}
