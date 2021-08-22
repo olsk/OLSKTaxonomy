@@ -90,8 +90,8 @@ onMount(mod.LifecycleModuleDidLoad);
 }
 
 .OLSKTaxonomy :global(.choices__inner, .choices__list--dropdown) {
-	background: var(--OLSKInputBackground) !important;
-	border-color: var(--OLSKCommonEdgeColor) !important;
+	background: var(--OLSKDecorFormBlendBackground) !important;
+	border-color: var(--OLSKDecorForegroundLight) !important;
 	width: 90% !important;
 	min-height: unset !important;
 	padding: var(--OLSKCommonInputPadding) !important;
