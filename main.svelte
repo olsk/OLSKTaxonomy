@@ -121,4 +121,8 @@ onMount(mod.LifecycleModuleDidLoad);
 	background-position: center;
 	border: none !important;
 }
+
+.OLSKTaxonomySuggestion {
+	margin-right: 4px;
+}
 </style>
