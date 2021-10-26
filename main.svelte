@@ -89,7 +89,7 @@ onMount(mod.LifecycleModuleDidLoad);
 	margin: 0;
 }
 
-.OLSKTaxonomy :global(.choices__inner, .choices__list--dropdown) {
+.OLSKTaxonomy :global(.choices__inner), .OLSKTaxonomy :global(.choices__list--dropdown) {
 	background: var(--OLSKDecorFormBlendBackground) !important;
 	border-color: var(--OLSKDecorForegroundLight) !important;
 	width: 90% !important;
