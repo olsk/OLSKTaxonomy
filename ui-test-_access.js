@@ -9,7 +9,7 @@ Object.entries({
 	OLSKTaxonomyHint: '.choices__item--choice',
 	OLSKTaxonomySuggestion: '.OLSKTaxonomySuggestion',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('OLSKTaxonomy_Access', function () {
