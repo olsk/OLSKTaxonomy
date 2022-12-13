@@ -47,6 +47,8 @@ const mod = {
 
 			removeItems: true,
 			removeItemButton: true,
+
+			allowHTML: false,
 		});
 
 		mod._ChoicesInstance.passedElement.element.addEventListener('change', mod.ReactItems, false);
