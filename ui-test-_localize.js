@@ -15,7 +15,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 		});
 
 		it('localizes OLSKTaxonomyField', function () {
-			browser.assert.attribute(OLSKTaxonomyField, 'placeholder', uLocalized('OLSKTaxonomyFieldText'));
+			return browser.assert.attribute(OLSKTaxonomyField, 'placeholder', uLocalized('OLSKTaxonomyFieldText'));
 		});
 
 		context('name', function () {
@@ -27,7 +27,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			});
 
 			it.skip('localizes OLSKTaxonomyHint', function () {
-				browser.assert.text(OLSKTaxonomyHint, 'placeholder', OLSKTestingFormatted(uLocalized('OLSKTaxonomyHintTemplate'), item));
+				return browser.assert.text(OLSKTaxonomyHint, 'placeholder', OLSKTestingFormatted(uLocalized('OLSKTaxonomyHintTemplate'), item));
 			});
 		
 		});

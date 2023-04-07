@@ -19,27 +19,27 @@ describe('OLSKTaxonomy_Access', function () {
 	});
 
 	it('shows OLSKTaxonomy', function () {
-		browser.assert.elements(OLSKTaxonomy, 1);
+		return browser.assert.elements(OLSKTaxonomy, 1);
 	});
 
 	it('shows choices', function () {
-		browser.assert.elements('.choices', 1);
+		return browser.assert.elements('.choices', 1);
 	});
 
 	it('hides OLSKTaxonomyItem', function () {
-		browser.assert.elements(OLSKTaxonomyItem, 0);
+		return browser.assert.elements(OLSKTaxonomyItem, 0);
 	});
 
 	it('shows OLSKTaxonomyField', function () {
-		browser.assert.elements(OLSKTaxonomyField, 1);
+		return browser.assert.elements(OLSKTaxonomyField, 1);
 	});
 
 	it('hides OLSKTaxonomyHint', function () {
-		browser.assert.elements(OLSKTaxonomyHint, 0);
+		return browser.assert.elements(OLSKTaxonomyHint, 0);
 	});
 
 	it('hides OLSKTaxonomySuggestion', function () {
-		browser.assert.elements(OLSKTaxonomySuggestion, 0);
+		return browser.assert.elements(OLSKTaxonomySuggestion, 0);
 	});
 
 	context('type', function () {
@@ -49,7 +49,7 @@ describe('OLSKTaxonomy_Access', function () {
 		});
 
 		it.skip('shows OLSKTaxonomyHint', function () {
-			browser.assert.elements(OLSKTaxonomyHint, 1);
+			return browser.assert.elements(OLSKTaxonomyHint, 1);
 		});
 	
 	});
@@ -61,7 +61,7 @@ describe('OLSKTaxonomy_Access', function () {
 		});
 
 		it.skip('shows OLSKTaxonomyItem', function () {
-			browser.assert.elements(OLSKTaxonomyItem, 1);
+			return browser.assert.elements(OLSKTaxonomyItem, 1);
 		});
 	
 	});
@@ -73,7 +73,7 @@ describe('OLSKTaxonomy_Access', function () {
 		});
 
 		it('hides OLSKTaxonomyItem', function () {
-			browser.assert.elements(OLSKTaxonomyItem, 0);
+			return browser.assert.elements(OLSKTaxonomyItem, 0);
 		});
 	
 	});
@@ -91,7 +91,7 @@ describe('OLSKTaxonomy_Access', function () {
 		});
 
 		it('shows OLSKTaxonomySuggestion', function () {
-			browser.assert.elements(OLSKTaxonomySuggestion, OLSKTaxonomySuggestionItems.length);
+			return browser.assert.elements(OLSKTaxonomySuggestion, OLSKTaxonomySuggestionItems.length);
 		});
 
 		describe('OLSKTaxonomySuggestion', function test_OLSKTaxonomySuggestion() {
@@ -103,7 +103,7 @@ describe('OLSKTaxonomy_Access', function () {
 			});
 			
 			it('hides OLSKTaxonomySuggestion', function () {
-				browser.assert.elements(OLSKTaxonomySuggestion, OLSKTaxonomySuggestionItems.length - 1);
+				return browser.assert.elements(OLSKTaxonomySuggestion, OLSKTaxonomySuggestionItems.length - 1);
 			});
 
 			context('remove', function () {
@@ -113,7 +113,7 @@ describe('OLSKTaxonomy_Access', function () {
 				});
 
 				it.skip('shows OLSKTaxonomySuggestion', function () {
-					browser.assert.elements(OLSKTaxonomySuggestion, OLSKTaxonomySuggestionItems.length);
+					return browser.assert.elements(OLSKTaxonomySuggestion, OLSKTaxonomySuggestionItems.length);
 				});
 			
 			});

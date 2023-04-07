@@ -18,11 +18,15 @@ describe('OLSKTaxonomy_Misc', function () {
 	});
 
 	it.skip('binds OLSKTaxonomyItems', function () {
-		browser.assert.text(OLSKTaxonomyItem, OLSKTaxonomyItems.join(' '));
+		return browser.assert.text(OLSKTaxonomyItem, OLSKTaxonomyItems.join(' '));
 	});
 
-	it('binds OLSKTaxonomySuggestionItems', function () {
-		browser.assert.text(OLSKTaxonomySuggestion, OLSKTaxonomySuggestionItems.join(''));
+	OLSKTaxonomySuggestionItems.forEach(function (e, i) {
+
+		it('binds OLSKTaxonomySuggestionItems ' + (i + 1), function () {
+			return browser.assert.text(OLSKTaxonomySuggestion + `:nth-child(${ (i + 1)})`, e);
+		});
+		
 	});
 
 	context('create', function () {
